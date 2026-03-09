@@ -14,17 +14,38 @@
     <title>Document</title>
 </head>
 <body>
-    This is the login page.
-    <a href="home.php"> This goes to the homepage.</a>
+   <form action="session.php" method="$_POST">
+        username:<br>
+        <input type="text" name="username"> <br>
+
+        password:<br>
+        <input type="text" name="password"> <br>
+        <input type="submit" name="login">
+   </form>
 
 </body>
 </html>
 
 <?php
-    $_SESSION["username"] = "Satar";
-    $_SESSION["password"] = "abc123";
+    // $_SESSION["username"] = "Satar";
+    // $_SESSION["password"] = "abc123";
 
-    echo $_SESSION["username"] . "<br>";
-    echo $_SESSION["password"] . "<br>";
+    // echo $_SESSION["username"] . "<br>";
+    // echo $_SESSION["password"] . "<br>";
+    if(isset($_POST["login"])){
+        
 
+        if(!empty($_POST["username"]) &&
+            !empty($_POST["password"])){
+                $_SESSION["username"] = $_POST["username"];
+                $_SESSION["password"] = $_POST["password"];
+
+                // echo $_SESSION["username"] . "<br>";
+                // echo $_SESSION["password"] . "<br>";
+        
+                header("Location: home.php");
+                }
+    }else{
+        echo "Missing username/password <br>";
+    }
 ?>
